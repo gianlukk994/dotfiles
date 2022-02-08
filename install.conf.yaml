@@ -6,7 +6,10 @@
 
 - link:
     ~/.config: .config
-#    ~/.vim: vim
+    ~/.gitconfig: .gitconfig
+    ~/.gitconfig-personal: .gitconfig-personal
+    ~/.gitconfig-work: .gitconfig-work
+    ~/.gitignore_global: .gitignore_global
 #    ~/.vimrc: vimrc
 
 #- create:

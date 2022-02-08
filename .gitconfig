@@ -1,0 +1,8 @@
+[includeIf "gitdir:~/"]	
+  path = ~/.gitconfig-personal
+[includeIf "gitdir:~/Projects/Sisal/"]
+  path = ~/.gitconfig-work
+[core]
+	excludesfile = /Users/eliag/.gitignore_global
+[http]
+	postBuffer = 524288000

@@ -16,5 +16,7 @@
 #    - ~/downloads
 #    - ~/.vim/undo-history
 
-#- shell:
-#    - [git submodule update --init --recursive, Installing submodules]
+- shell:
+    - command: ./setup_homebrew.sh
+      stdout: true
+      stderr: true

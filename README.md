@@ -2,5 +2,6 @@
 
 ### To do list
 
-- [ ] Add Dotbot
-- [ ] Symlink with gitconfig
+- [x] Add Dotbot
+- [x] Symlink with gitconfig
+- [x] Add homebrew

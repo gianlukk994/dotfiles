@@ -5,7 +5,7 @@
 - clean: ["~"]
 
 - link:
-    ~/.config: config
+    ~/.config: .config
 #    ~/.vim: vim
 #    ~/.vimrc: vimrc
 

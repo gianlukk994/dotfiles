@@ -8,4 +8,4 @@
 - [ ] Setup asdf
 - [ ] Add Exa, Alfred with brew
 - [ ] Add snappy from mas
-- [ ] Add vscode settings
+- [x] Add vscode settings

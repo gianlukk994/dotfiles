@@ -27,3 +27,6 @@
     - command: ./setup_asdf.sh
       stdout: true
       stderr: true
+    - command: ./setup_vscode.sh
+      stdout: true
+      stderr: true

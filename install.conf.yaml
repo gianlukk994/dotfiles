@@ -10,6 +10,7 @@
     ~/.gitconfig-personal: .gitconfig-personal
     ~/.gitconfig-work: .gitconfig-work
     ~/.gitignore_global: .gitignore_global
+    ~/Library/Application\ Support/Code/User/: /vscode/settings.json
 #    ~/.vimrc: vimrc
 
 #- create:

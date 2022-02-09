@@ -1,0 +1,22 @@
+- defaults:
+    link:
+      relink: true
+
+- clean: ["~"]
+
+- link:
+    ~/.config: .config
+    ~/.gitconfig: .gitconfig
+    ~/.gitconfig-personal: .gitconfig-personal
+    ~/.gitconfig-work: .gitconfig-work
+    ~/.gitignore_global: .gitignore_global
+#    ~/.vimrc: vimrc
+
+#- create:
+#    - ~/downloads
+#    - ~/.vim/undo-history
+
+- shell:
+    - command: ./setup_homebrew.sh
+      stdout: true
+      stderr: true

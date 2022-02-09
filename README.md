@@ -2,5 +2,9 @@
 
 ### To do list
 
-- [ ] Add Dotbot
-- [ ] Symlink with gitconfig
+- [x] Add Dotbot
+- [x] Symlink with gitconfig
+- [x] Add homebrew
+- [ ] Setup asdf
+- [ ] Add Exa, Alfred with brew
+- [ ] Add snappy from mas

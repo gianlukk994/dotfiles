@@ -5,7 +5,7 @@
 - [x] Add Dotbot
 - [x] Symlink with gitconfig
 - [x] Add homebrew
-- [ ] Setup asdf
+- [x] Setup asdf
 - [ ] Add Exa, Alfred with brew
 - [ ] Add snappy from mas
 - [x] Add vscode settings

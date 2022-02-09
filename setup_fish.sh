@@ -32,6 +32,13 @@ function install_omf() {
     fi
 }
 
+function configure_gitignore_globally() {
+    fancy_echo "Configuring git to ignore files globally!"
+
+    git config --global core.excludesFile '~/.gitignore_global'
+}
+
 add_fish_to_shells
 change_default_shell_to_fish
 install_omf
+configure_gitignore_globally

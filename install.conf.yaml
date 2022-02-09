@@ -20,3 +20,6 @@
     - command: ./setup_homebrew.sh
       stdout: true
       stderr: true
+    - command: ./setup_fish.sh
+      stdout: true
+      stderr: true

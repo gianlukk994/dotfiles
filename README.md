@@ -9,3 +9,4 @@
 - [ ] Add Exa, Alfred with brew
 - [ ] Add snappy from mas
 - [x] Add vscode settings
+- [ ] Add iterm config

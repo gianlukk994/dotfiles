@@ -6,7 +6,8 @@
 - [x] Symlink with gitconfig
 - [x] Add homebrew
 - [x] Setup asdf
+- [x] Add vscode settings
+- [x] Add iterm config
+- [ ] Config new git profile
 - [ ] Add Exa, Alfred with brew
 - [ ] Add snappy from mas
-- [x] Add vscode settings
-- [ ] Add iterm config

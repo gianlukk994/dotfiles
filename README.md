@@ -11,3 +11,4 @@
 - [ ] Config new git profile
 - [ ] Add Exa, Alfred with brew
 - [ ] Add snappy from mas
+- [ ] Add iterm script for loading settings from custom folder

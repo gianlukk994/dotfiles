@@ -1,8 +1,15 @@
-[includeIf "gitdir:~/"]	
-  path = ~/.gitconfig-personal
-[includeIf "gitdir:~/Projects/Sisal/"]
-  path = ~/.gitconfig-work
+[user]
+  name = Gianluca Elia
+  email = 34285663+gianlukk994@users.noreply.github.com
+[github]
+  user = gianlukk994
+[init]
+  defaultBranch = main
+[hub]
+  protocol = https
+[credential]
+  helper = osxkeychain
 [core]
-	excludesfile = /Users/eliag/.gitignore_global
+  excludesfile = /Users/eliag/.gitignore_global
 [http]
-	postBuffer = 524288000
+  postBuffer = 524288000

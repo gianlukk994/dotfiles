@@ -1,0 +1,15 @@
+[user]
+  name = Gianluca Elia
+  email = 34285663+gianlukk994@users.noreply.github.com
+[github]
+  user = gianlukk994
+[init]
+  defaultBranch = main
+[hub]
+  protocol = https
+[credential]
+  helper = osxkeychain
+[core]
+  excludesfile = /Users/eliag/.gitignore_global
+[http]
+  postBuffer = 524288000

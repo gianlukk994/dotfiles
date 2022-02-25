@@ -8,7 +8,7 @@
 - [x] Setup asdf
 - [x] Add vscode settings
 - [x] Add iterm config
-- [ ] Config new git profile
+- [x] Config new git profile
 - [ ] Add Exa, Alfred with brew
 - [ ] Add snappy from mas
 - [ ] Add iterm script for loading settings from custom folder

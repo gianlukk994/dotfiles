@@ -15,6 +15,6 @@ function install_brew() {
 
 install_brew
 
-export HOMEBREW_CASK_OPTS = "--no-quarantine"
+# export HOMEBREW_CASK_OPTS = "--no-quarantine"
 
 brew bundle --verbose

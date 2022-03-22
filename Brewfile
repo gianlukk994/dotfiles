@@ -53,6 +53,8 @@ cask "clockify"
 cask "discord"
 # App to build and share containerized applications and microservices
 cask "docker"
+# Collaborative meeting agendas, notes, and action items
+cask "fellow"
 # Collaborative team software
 cask "figma"
 # Terminal emulator as alternative to Apple's Terminal app
@@ -61,7 +63,6 @@ cask "iterm2"
 cask "kindle"
 # Screen and video recording software
 cask "loom"
-cask "nosqlclient"
 # App to write, plan, collaborate, and get organized
 cask "notion"
 # Free and open source web app scanner
@@ -78,9 +79,12 @@ cask "spotify"
 cask "visual-studio-code"
 # Video communication and virtual meeting platform
 cask "zoom"
+mas "1Password 7", id: 1333542190
 mas "Amphetamine", id: 937984704
 mas "Be Focused", id: 973134470
+mas "Clocker", id: 1056643111
 mas "Hand Mirror", id: 1502839586
+mas "Harvest", id: 506189836
 mas "Meeter - Partecipare alle riunioni più velocemente", id: 1510445899
 mas "Slack", id: 803453959
 mas "Spark", id: 1176895641

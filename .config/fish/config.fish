@@ -1,12 +1,23 @@
 
 source /usr/local/opt/asdf/asdf.fish
+source /usr/local/opt/asdf/libexec/asdf.fish
 
 set theme_color_scheme dracula
 set -g theme_display_ruby no
 
 # Set variables
+
 # Syntax highlight for man pages using bat
-export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+set -xg MANPAGER "sh -c 'col -bx | bat -l man -p'"
+
+# Update the ANDROID_HOME, this is needed for react native
+set -xg ANDROID_HOME "$HOME/Library/Android/sdk"
+set -xg PATH "$PATH:$ANDROID_HOME/emulator"
+set -xg PATH "$PATH:$ANDROID_HOME/tools"
+set -xg PATH "$PATH:$ANDROID_HOME/tools/bin"
+set -xg PATH "$PATH:$ANDROID_HOME/platform-tools"
+# set -xg JAVA_HOME "/usr/libexec/java_home"
+ 
 
 # Aliases
 

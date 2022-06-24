@@ -8,7 +8,6 @@
     ~/.config: .config
     ~/.gitconfig: .gitconfig
     ~/.gitignore_global: .gitignore_global
-    ~/Library/Preferences/com.apple.dock.plist: /osx/com.apple.dock.plist
     ~/Library/Application\ Support/Code/User/settings.json: /vscode/settings.json
     ~/.vimrc: .vimrc
 
@@ -20,12 +19,15 @@
     - command: ./setup_homebrew.sh
       stdout: true
       stderr: true
-    - command: ./setup_fish.sh
+    - command: ./setup_macos.sh
       stdout: true
       stderr: true
     - command: ./setup_asdf.sh
       stdout: true
       stderr: true
     - command: ./setup_vscode.sh
+      stdout: true
+      stderr: true
+    - command: ./setup_fish.sh
       stdout: true
       stderr: true

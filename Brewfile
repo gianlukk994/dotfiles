@@ -1,40 +1,49 @@
+tap "heroku/brew"
 tap "homebrew/bundle"
 tap "homebrew/cask"
 tap "homebrew/core"
 tap "homebrew/services"
 tap "mongodb/brew"
-# Cryptography and SSL/TLS Toolkit
-brew "openssl@1.1"
 # Library for command-line editing
 brew "readline"
 # Extendable version manager with support for Ruby, Node.js, Erlang & more
 brew "asdf"
 # Clone of cat(1) with syntax highlighting and Git integration
 brew "bat"
-# Create Docker hosts locally and on cloud providers
-brew "docker-machine"
+# Cross-platform make
+brew "cmake"
 # User-friendly command-line shell for UNIX-like operating systems
 brew "fish"
 # Distributed revision control system
 brew "git"
-# GNU Pretty Good Privacy (PGP) package
-brew "gnupg"
-# Kubernetes command-line interface
-brew "kubernetes-cli"
-# Mac App Store command-line interface
-brew "mas"
-# Run a Kubernetes cluster locally
-brew "minikube"
-# Command-line interface for SQLite
-brew "sqlite"
-# User interface to the TELNET protocol
-brew "telnet"
 # General-purpose data compression with high compression ratio
 brew "xz"
+# Manage compile and link flags for libraries
+brew "pkg-config"
+# GNU Transport Layer Security (TLS) Library
+brew "gnutls"
+# GNU Pretty Good Privacy (PGP) package
+brew "gnupg"
+# Tools and libraries to manipulate images in many formats
+brew "imagemagick"
+# Mac App Store command-line interface
+brew "mas"
+# Platform built on V8 to build network applications
+brew "node@14"
+# MongoDB Shell to connect, configure, query, and work with your MongoDB database
+brew "mongosh"
+# Object-relational database system
+brew "postgresql@13"
+# User interface to the TELNET protocol
+brew "telnet"
 # General-purpose lossless data-compression library
 brew "zlib"
+# Everything you need to get started with Heroku
+brew "heroku/brew/heroku"
 # High-performance, schema-free, document-oriented database
 brew "mongodb/brew/mongodb-community"
+# Tools for building Android applications
+cask "android-studio"
 # Application uninstaller
 cask "appcleaner"
 # Manage team projects and tasks
@@ -51,12 +60,16 @@ cask "clipy"
 cask "clockify"
 # Voice and text chat software
 cask "discord"
-# App to build and share containerized applications and microservices
-cask "docker"
 # Collaborative meeting agendas, notes, and action items
 cask "fellow"
 # Collaborative team software
 cask "figma"
+# Web browser
+cask "firefox"
+# Personal blockchain for Ethereum development
+cask "ganache"
+# Utility to fix grammar errors and style issues in text
+cask "grammarly"
 # Terminal emulator as alternative to Apple's Terminal app
 cask "iterm2"
 # Interface for reading and syncing eBooks
@@ -75,6 +88,8 @@ cask "rectangle"
 cask "skype"
 # Music streaming service
 cask "spotify"
+# Charting and social-networking for investment traders
+cask "tradingview"
 # Open-source code editor
 cask "visual-studio-code"
 # Video communication and virtual meeting platform

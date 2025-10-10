@@ -1,13 +1,58 @@
 [user]
-  name = Gianluca Elia
-  email = 34285663+gianlukk994@users.noreply.github.com
+	name = Gianluca Elia
+  	email = 34285663+gianlukk994@users.noreply.github.com
+	signingkey = 6DDC77D977223AAA
+
 [github]
-  user = gianlukk994
+  	user = gianlukk994
+
 [init]
-  defaultBranch = main
+  	defaultBranch = main
+
 [hub]
-  protocol = https
+  	protocol = https
+
 [core]
-  excludesFile = ~/.gitignore_global
+	excludesFile = ~/.gitignore_global
+
 [http]
-  postBuffer = 524288000
+  	postBuffer = 524288000
+
+[commit]
+	gpgSign = true
+
+[push]
+	autoSetupRemote = true
+
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+
+[color]
+	ui = true
+
+[color "diff"]
+	meta = "#89b4fa"
+	frag = "#cba6f7"
+	old = "#f38ba8"
+	new = "#a6e3a1"
+
+[color "status"]
+	added = "#a6e3a1"
+	changed = "#fab387"
+	untracked = "#f38ba8"
+
+[color "branch"]
+	current = "#cba6f7"
+	local = "#89b4fa"
+	remote = "#94e2d5"
+
+[color "interactive"]
+	prompt = "#b4befe"
+[color "decorate"]
+	branch = "#87afff"
+	remote = "#87d7d7"
+	tag = "#d7af5f"
+	head = "#87d787"

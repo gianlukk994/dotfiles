@@ -1,0 +1,2 @@
+# allow asdf to use .nvmrc or node-version files
+legacy_version_file = yes

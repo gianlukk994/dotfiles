@@ -1,7 +1,6 @@
 {
-  "workbench.colorTheme": "One Dark Pro",
+  "workbench.colorTheme": "GitHub Dark Default",
   "workbench.iconTheme": "material-icon-theme",
-  "workbench.fontAliasing": "auto",
   "editor.formatOnPaste": true,
   "editor.suggest.shareSuggestSelections": true,
   "window.doubleClickIconToClose": true,
@@ -28,7 +27,6 @@
   },
   "typescript.updateImportsOnFileMove.enabled": "always",
   "workbench.view.alwaysShowHeaderActions": true,
-  "breadcrumbs.enabled": true,
   "emmet.includeLanguages": {
     "javascript": "javascriptreact",
     "erb": "html"
@@ -39,9 +37,7 @@
   "editor.renderWhitespace": "all",
   "editor.tabSize": 2,
   "editor.insertSpaces": true,
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "todo-tree.tree.showScanModeButton": false,
-  "editor.renameOnType": true,
+  "editor.linkedEditing": true,
   "[html]": {
     "editor.defaultFormatter": "vscode.html-language-features"
   },
@@ -61,19 +57,74 @@
   "[typescriptreact]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
+  // "[ruby]": {
+  //   "editor.defaultFormatter": "misogi.ruby-rubocop"
+  // },
   "[svelte]": {
     "editor.defaultFormatter": "svelte.svelte-vscode"
   },
-  "eslint.alwaysShowStatus": true,
   "editor.fontFamily": "'cascadia code'",
   "editor.fontLigatures": true,
-  "workbench.editorAssociations": {
-    "*.ipynb": "jupyter-notebook"
-  },
   "editor.formatOnSave": true,
-  "notebook.cellToolbarLocation": {
-    "default": "right",
-    "jupyter-notebook": "left"
+  "prettier.useTabs": false,
+  // "[gemfile]": {
+  //   "editor.defaultFormatter": "misogi.ruby-rubocop"
+  // },
+  "workbench.fontAliasing": "auto",
+  "sonarlint.rules": {
+    "typescript:S6478": {
+      "level": "off"
+    },
+    "typescript:S6480": {
+      "level": "off"
+    }
   },
-  "prettier.useTabs": false
+  "[python]": {
+    "editor.formatOnType": true
+  },
+  "git.ignoreRebaseWarning": true,
+  "files.trimTrailingWhitespace": true,
+  "files.insertFinalNewline": true,
+  "[liquid]": {
+    "editor.defaultFormatter": "Shopify.theme-check-vscode",
+    "editor.formatOnSave": true
+  },
+  "editor.stickyScroll.enabled": true,
+  "git.inputValidation": true,
+  "gitlens.ai.experimental.generateCommitMessage.enabled": false,
+  "remote.SSH.useExecServer": false,
+  "remote.SSH.logLevel": "trace",
+  "prisma.showPrismaDataPlatformNotification": false,
+  "editor.copyWithSyntaxHighlighting": false,
+  "github.copilot.editor.enableAutoCompletions": true,
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+
+  // Inject custom styles and scripts to modify VS Code
+  "vscode_custom_css.imports": [
+    "file:///Users/r00t/.dotfiles/vscode/custom-vscode.css"
+  ],
+  "editor.minimap.enabled": false,
+  "sshfs.configs": [
+    {
+      "name": "homeassistant",
+      "host": "192.168.1.25",
+      "username": "root",
+      "privateKeyPath": "/Users/r00t/.ssh/id_ed25519"
+    }
+  ],
+  "github.copilot.chat.agent.thinkingTool": true,
+  "github.copilot.chat.codesearch.enabled": true,
+  "github.copilot.nextEditSuggestions.enabled": true,
+  "[ruby]": {
+    "editor.defaultFormatter": "ruby-syntax-tree.vscode-syntax-tree"
+  },
+  "github.copilot.enable": {
+    "*": true,
+    "plaintext": false,
+    "markdown": false,
+    "scminput": false,
+    "typescript": true
+  },
 }

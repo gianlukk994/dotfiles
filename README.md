@@ -88,21 +88,13 @@ state untouched.
 
 The `Brewfile` is the single source of truth for Homebrew formulae, casks,
 Mac App Store apps (`mas`) and VS Code extensions (`vscode`). Rather than
-installing from the repo, install whatever you want with `brew` directly and
-then snapshot the machine back into the `Brewfile`:
+installing from the repo, just install whatever you want with `brew` directly.
 
-```sh
-brew bundle dump --force --file=~/.dotfiles/Brewfile
-```
-
-`--force` overwrites the existing `Brewfile`; the dump already includes the
-explanatory `# comment` above each entry by default.
-
-The Fish config wraps `brew` so this dump runs automatically after a
-successful `brew install`/`uninstall`/`tap`/`untap`/`reinstall`, keeping the
-`Brewfile` in sync (it also re-captures casks, `mas` and VS Code extensions).
-The wrapper only updates the file — review and commit the change yourself.
-Run it on demand any time with the `brewdump` function.
+The Fish config wraps `brew` so the `Brewfile` is re-dumped automatically after
+a successful `brew install`/`uninstall`/`tap`/`untap`/`reinstall`, capturing
+the new formulae, casks, `mas` and VS Code apps. The wrapper only updates the
+file — review and commit the change yourself. Run `brewdump` to refresh it on
+demand (for example after installing a cask or extension outside of `brew`).
 
 To restore everything on a fresh machine, `bootstrap.sh` runs
 `brew bundle` for you (or run `brew bundle --file=~/.dotfiles/Brewfile`).

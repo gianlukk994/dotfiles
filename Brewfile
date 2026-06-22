@@ -129,6 +129,8 @@ brew "python@3.9"
 brew "redis", restart_service: :changed
 # Cross-shell prompt for astronauts
 brew "starship"
+# Manage installation of symlinks for dotfiles
+brew "stow"
 # User interface to the TELNET protocol
 brew "telnet"
 # Image processing library

@@ -16,7 +16,7 @@ if ! command -v code >/dev/null 2>&1; then
     exit 0
 fi
 
-while read -r extension; do
+while read -r extension _; do
     [[ -z "${extension}" || "${extension}" == \#* ]] && continue
     code --install-extension "${extension}"
 done < "${REPO_DIR}/vscode_extension.txt"

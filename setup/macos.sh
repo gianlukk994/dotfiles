@@ -1,4 +1,15 @@
-#!/bin/bash
+#!/usr/bin/env bash
+#
+# Apply macOS defaults and configure the Dock.
+
+set -euo pipefail
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+REPO_DIR="$(cd "${SCRIPT_DIR}/.." && pwd)"
+# shellcheck source=../lib/utils.sh
+source "${SCRIPT_DIR}/../lib/utils.sh"
+
+fancy_echo "<<< Starting macOS Setup >>>"
 
 persistent_applications=(
     "/System/Applications/System Preferences.app"
@@ -47,6 +58,8 @@ done
 # Load preferences from a custom directory
 defaults write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder -bool true
 # Specify the custom directory
-defaults write com.googlecode.iterm2.plist PrefsCustomFolder -string "$HOME/.dotfiles/.iterm2"
+defaults write com.googlecode.iterm2.plist PrefsCustomFolder -string "${REPO_DIR}/.iterm2"
 
-killall Dock
+if ! is_ci; then
+    killall Dock || true
+fi

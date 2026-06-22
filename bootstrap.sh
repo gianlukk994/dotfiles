@@ -23,17 +23,17 @@ link_vscode_settings() {
 
 main() {
     # 1. Install Homebrew and the Brewfile packages (includes stow).
-    ./setup_homebrew.sh
+    ./setup/homebrew.sh
 
     # 2. Symlink the dotfiles into $HOME.
     stow -d stow -t "${HOME}" "${STOW_PACKAGES[@]}"
     link_vscode_settings
 
     # 3. Run the remaining setup steps.
-    ./setup_macos.sh
-    ./setup_asdf.sh
-    ./setup_vscode.sh
-    ./setup_fish.sh
+    ./setup/macos.sh
+    ./setup/asdf.sh
+    ./setup/vscode.sh
+    ./setup/fish.sh
 }
 
 main "$@"

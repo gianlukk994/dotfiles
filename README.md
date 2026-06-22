@@ -24,7 +24,6 @@ To run a single step manually:
 stow -d stow -t ~ git vim asdf fish nvim gh starship   # symlink dotfiles
 ./setup/macos.sh                             # macOS defaults and Dock
 ./setup/asdf.sh                              # asdf runtimes from ~/.tool-versions
-./setup/vscode.sh                            # VS Code extensions
 ./setup/fish.sh                              # default shell + Oh My Fish
 ```
 
@@ -59,11 +58,10 @@ state untouched.
 | Path                    | Purpose                                                     |
 | ----------------------- | ----------------------------------------------------------- |
 | `bootstrap.sh`          | Entry point: installs packages, stows dotfiles, runs setup. |
-| `setup/`                | Individual setup scripts (homebrew, macos, asdf, vscode, fish). |
+| `setup/`                | Individual setup scripts (homebrew, macos, asdf, fish).     |
 | `lib/utils.sh`          | Shared shell helpers sourced by the setup scripts.          |
 | `stow/`                 | Stow packages, one per tool (each mirrors `$HOME`).         |
-| `Brewfile`              | Homebrew formulae and casks (`brew bundle`).                |
-| `vscode_extension.txt`  | VS Code extensions installed by `setup/vscode.sh`.          |
+| `Brewfile`              | Homebrew formulae, casks, App Store and VS Code apps.       |
 | `stow/fish/`            | Fish config; aliases and env in `config.fish`.              |
 | `stow/nvim/`            | Neovim config built on [LazyVim](https://www.lazyvim.org/). |
 | `stow/starship/`        | Starship prompt config.                                     |
@@ -80,11 +78,34 @@ state untouched.
 
 ## Adding things
 
-- **Packages:** add to `Brewfile`, then run `brew bundle`.
+- **Packages, casks, App Store and VS Code apps:** install them with `brew`
+  wherever you like, then snapshot the system into the `Brewfile` (see below).
 - **Dotfiles:** add the file inside the matching `stow/<package>/` tree
   (mirroring its `$HOME` path), then re-run `stow -R -d stow -t ~ <package>`.
 - **A new tool:** create `stow/<tool>/` mirroring `$HOME`, then stow it.
-- **VS Code extensions:** add the extension id to `vscode_extension.txt`.
+
+## Brewfile workflow
+
+The `Brewfile` is the single source of truth for Homebrew formulae, casks,
+Mac App Store apps (`mas`) and VS Code extensions (`vscode`). Rather than
+installing from the repo, install whatever you want with `brew` directly and
+then snapshot the machine back into the `Brewfile`:
+
+```sh
+brew bundle dump --force --file=~/.dotfiles/Brewfile
+```
+
+`--force` overwrites the existing `Brewfile`; the dump already includes the
+explanatory `# comment` above each entry by default.
+
+The Fish config wraps `brew` so this dump runs automatically after a
+successful `brew install`/`uninstall`/`tap`/`untap`/`reinstall`, keeping the
+`Brewfile` in sync (it also re-captures casks, `mas` and VS Code extensions).
+The wrapper only updates the file — review and commit the change yourself.
+Run it on demand any time with the `brewdump` function.
+
+To restore everything on a fresh machine, `bootstrap.sh` runs
+`brew bundle` for you (or run `brew bundle --file=~/.dotfiles/Brewfile`).
 
 ## Notes
 

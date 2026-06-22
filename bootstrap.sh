@@ -32,7 +32,6 @@ main() {
     # 3. Run the remaining setup steps.
     ./setup/macos.sh
     ./setup/asdf.sh
-    ./setup/vscode.sh
     ./setup/fish.sh
 }
 

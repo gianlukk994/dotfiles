@@ -24,4 +24,16 @@ install_brew() {
 install_brew
 load_brew_shellenv
 
-brew bundle --file="${REPO_DIR}/Brewfile" --verbose
+BREWFILE="${REPO_DIR}/Brewfile"
+
+if is_ci; then
+    # GUI casks and Mac App Store apps cannot be installed unattended on a CI
+    # runner, so install the formulae (and their taps) only.
+    fancy_echo "CI detected; installing formulae only (skipping casks and mas)."
+    CI_BREWFILE="$(mktemp)"
+    trap 'rm -f "${CI_BREWFILE}"' EXIT
+    grep -E '^(tap|brew) ' "${BREWFILE}" > "${CI_BREWFILE}"
+    BREWFILE="${CI_BREWFILE}"
+fi
+
+brew bundle --file="${BREWFILE}" --verbose

@@ -15,21 +15,23 @@ Run the bootstrap script to apply everything:
 This:
 1. Installs Homebrew and the `Brewfile` packages (including `stow`).
 2. Symlinks the dotfiles with `stow -d stow -t ~ git vim asdf fish nvim gh starship` and links the VS Code `settings.json`.
-3. Runs setup scripts in order: `setup_homebrew.sh` → `setup_macos.sh` → `setup_asdf.sh` → `setup_vscode.sh` → `setup_fish.sh`
+3. Runs setup scripts in order: `setup/homebrew.sh` → `setup/macos.sh` → `setup/asdf.sh` → `setup/vscode.sh` → `setup/fish.sh`
 
 To run a single setup step:
 
 ```sh
-./setup_homebrew.sh   # Install/update Homebrew + Brewfile packages
-./setup_macos.sh      # Apply macOS defaults and Dock config
-./setup_asdf.sh       # Install asdf plugins and runtimes from .tool-versions
-./setup_vscode.sh     # Install VS Code extensions
-./setup_fish.sh       # Set Fish as default shell, install Oh My Fish
+./setup/homebrew.sh   # Install/update Homebrew + Brewfile packages
+./setup/macos.sh      # Apply macOS defaults and Dock config
+./setup/asdf.sh       # Install asdf plugins and runtimes from ~/.tool-versions
+./setup/vscode.sh     # Install VS Code extensions
+./setup/fish.sh       # Set Fish as default shell, install Oh My Fish
 ```
 
 ## Architecture
 
 - **`bootstrap.sh`** — Entry point; installs packages, runs Stow, and runs the setup scripts.
+- **`setup/`** — Individual setup scripts (`homebrew.sh`, `macos.sh`, `asdf.sh`, `vscode.sh`, `fish.sh`). They source `lib/utils.sh` and are CI-aware via the `CI` env var.
+- **`lib/utils.sh`** — Shared helpers (`fancy_echo`, `is_ci`, `load_brew_shellenv`).
 - **`stow/`** — Stow packages, one per tool (`git`, `vim`, `asdf`, `fish`, `nvim`, `gh`, `starship`). Each package mirrors `$HOME`.
 - **`Brewfile`** — All Homebrew formulae and casks. Edit here, then run `brew bundle`.
 - **`stow/fish/.config/fish/`** — Fish shell config. `config.fish` holds all aliases, `PATH` extensions, and environment variables. Custom functions live in `functions/`.

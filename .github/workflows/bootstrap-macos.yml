@@ -1,0 +1,51 @@
+name: Bootstrap macOS
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  bootstrap-macos:
+    name: Full bootstrap on macOS
+    runs-on: macos-latest
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v4
+
+      - name: Use an isolated HOME
+        # Link into a throwaway HOME so pre-existing runner dotfiles (such as
+        # ~/.gitconfig) do not collide with Stow.
+        run: |
+          isolated="${RUNNER_TEMP}/home"
+          mkdir -p "${isolated}"
+          echo "HOME=${isolated}" >> "${GITHUB_ENV}"
+
+      - name: Seed a test ~/.tool-versions
+        run: printf 'nodejs 24.14.0\n' > "${HOME}/.tool-versions"
+
+      - name: Run bootstrap
+        run: ./bootstrap.sh
+
+      - name: Verify dotfile symlinks resolve into the repo
+        run: |
+          set -euo pipefail
+          fail=0
+          check() {
+            local link="$1" source="$2"
+            if [[ ! -L "${link}" ]]; then
+              echo "MISSING symlink: ${link}"
+              fail=1
+            elif [[ ! "${link}" -ef "${source}" ]]; then
+              echo "Symlink does not resolve to ${source}: ${link}"
+              fail=1
+            else
+              echo "OK: ${link} -> ${source}"
+            fi
+          }
+          check "${HOME}/.gitconfig" "${GITHUB_WORKSPACE}/stow/git/.gitconfig"
+          check "${HOME}/.config/fish/config.fish" "${GITHUB_WORKSPACE}/stow/fish/.config/fish/config.fish"
+          check "${HOME}/.config/nvim/init.lua" "${GITHUB_WORKSPACE}/stow/nvim/.config/nvim/init.lua"
+          check "${HOME}/.config/starship.toml" "${GITHUB_WORKSPACE}/stow/starship/.config/starship.toml"
+          exit "${fail}"

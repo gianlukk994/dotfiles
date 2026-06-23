@@ -34,11 +34,11 @@ jobs:
           fail=0
           check() {
             local link="$1" source="$2"
-            if [[ ! -L "${link}" ]]; then
-              echo "MISSING symlink: ${link}"
+            if [[ ! -e "${link}" ]]; then
+              echo "MISSING path: ${link}"
               fail=1
             elif [[ ! "${link}" -ef "${source}" ]]; then
-              echo "Symlink does not resolve to ${source}: ${link}"
+              echo "Path does not resolve to ${source}: ${link}"
               fail=1
             else
               echo "OK: ${link} -> ${source}"

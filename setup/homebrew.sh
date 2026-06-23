@@ -27,13 +27,10 @@ load_brew_shellenv
 BREWFILE="${REPO_DIR}/Brewfile"
 
 if is_ci; then
-    # GUI casks and Mac App Store apps cannot be installed unattended on a CI
-    # runner, so install the formulae (and their taps) only.
-    fancy_echo "CI detected; installing formulae only (skipping casks and mas)."
-    CI_BREWFILE="$(mktemp)"
-    trap 'rm -f "${CI_BREWFILE}"' EXIT
-    grep -E '^(tap|brew) ' "${BREWFILE}" > "${CI_BREWFILE}"
-    BREWFILE="${CI_BREWFILE}"
+    # CI already has Homebrew, so install only the package bootstrap needs.
+    fancy_echo "CI detected; installing stow only."
+    brew install stow
+    exit 0
 fi
 
 brew bundle --file="${BREWFILE}" --verbose

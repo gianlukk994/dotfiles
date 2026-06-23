@@ -14,7 +14,7 @@ Run the bootstrap script to apply everything:
 
 This:
 1. Installs Homebrew and the `Brewfile` packages (including `stow`).
-2. Symlinks the dotfiles with `stow -d stow -t ~ git vim asdf fish nvim gh starship` and links the VS Code `settings.json`.
+2. Symlinks the dotfiles with `stow -d stow -t ~ git vim asdf fish nvim gh starship vscode`.
 3. Runs setup scripts in order: `setup/homebrew.sh` → `setup/macos.sh` → `setup/asdf.sh` → `setup/fish.sh`
 
 To run a single setup step:
@@ -31,7 +31,7 @@ To run a single setup step:
 - **`bootstrap.sh`** — Entry point; installs packages, runs Stow, and runs the setup scripts.
 - **`setup/`** — Individual setup scripts (`homebrew.sh`, `macos.sh`, `asdf.sh`, `fish.sh`). They source `lib/utils.sh` and are CI-aware via the `CI` env var.
 - **`lib/utils.sh`** — Shared helpers (`fancy_echo`, `is_ci`, `load_brew_shellenv`).
-- **`stow/`** — Stow packages, one per tool (`git`, `vim`, `asdf`, `fish`, `nvim`, `gh`, `starship`). Each package mirrors `$HOME`.
+- **`stow/`** — Stow packages, one per tool (`git`, `vim`, `asdf`, `fish`, `nvim`, `gh`, `starship`, `vscode`). Each package mirrors `$HOME`.
 - **`Brewfile`** — Single source of truth for Homebrew formulae, casks, Mac App Store apps (`mas`) and VS Code extensions (`vscode`). Maintained with `brew bundle dump`, not hand-edited.
 - **`stow/fish/.config/fish/`** — Fish shell config. `config.fish` holds all aliases, `PATH` extensions, and environment variables. Custom functions live in `functions/`.
 - **`stow/nvim/.config/nvim/`** — Neovim config built on [LazyVim](https://www.lazyvim.org/). Plugins declared in `lua/plugins/`, core config in `lua/config/`.
@@ -52,6 +52,9 @@ Runtime versions are pinned in `~/.tool-versions` (not tracked in the repo). `se
 
 ### Adding New Dotfiles / Symlinks
 Add the file inside the matching `stow/<package>/` tree (mirroring its `$HOME` path), then run `stow -R -d stow -t ~ <package>`. For a new tool, create `stow/<tool>/` mirroring `$HOME` and stow it.
+
+### VS Code
+VS Code settings and custom CSS live under `stow/vscode/Library/Application Support/Code/User/` and are stowed like the rest of the dotfiles.
 
 ### Adding New Packages
 Install with `brew` directly (formulae, casks, `mas`, or VS Code extensions), then snapshot the machine into the `Brewfile` with `brew bundle dump --force --file=~/.dotfiles/Brewfile`. The Fish `brew` wrapper (`stow/fish/.config/fish/functions/brew.fish`) runs this dump automatically after a successful `brew install`/`uninstall`/`tap`/`untap`/`reinstall`; `brewdump` runs it on demand. The wrapper only updates the file — commit it manually.

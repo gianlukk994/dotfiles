@@ -11,15 +11,7 @@ BASEDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "${BASEDIR}"
 
 # Stow packages to link into $HOME. Each lives under stow/<name>.
-STOW_PACKAGES=(git vim asdf fish nvim gh starship)
-
-# VS Code settings live outside ~/.config, so they are linked explicitly.
-VSCODE_USER_DIR="${HOME}/Library/Application Support/Code/User"
-
-link_vscode_settings() {
-    mkdir -p "${VSCODE_USER_DIR}"
-    ln -sfn "${BASEDIR}/vscode/settings.json" "${VSCODE_USER_DIR}/settings.json"
-}
+STOW_PACKAGES=(git vim asdf fish nvim gh starship vscode)
 
 main() {
     # 1. Install Homebrew and the Brewfile packages (includes stow).
@@ -27,7 +19,6 @@ main() {
 
     # 2. Symlink the dotfiles into $HOME.
     stow -d stow -t "${HOME}" "${STOW_PACKAGES[@]}"
-    link_vscode_settings
 
     # 3. Run the remaining setup steps.
     ./setup/macos.sh

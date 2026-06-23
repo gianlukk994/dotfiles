@@ -2,7 +2,9 @@ tap "heroku/brew"
 tap "homebrew/bundle"
 tap "homebrew/services"
 tap "mongodb/brew"
+tap "nano-collective/nanocoder", "https://github.com/Nano-Collective/nanocoder"
 tap "shopify/shopify"
+tap "teamookla/speedtest"
 # Run your GitHub Actions locally
 brew "act"
 # Library for manipulating PNG images
@@ -31,10 +33,18 @@ brew "glib"
 brew "cloudflared"
 # Cross-platform make
 brew "cmake"
+# Container runtimes on MacOS (and Linux) with minimal setup
+brew "colima"
 # Get a file from an HTTP, HTTPS or FTP server
 brew "curl"
 # Load/unload environment variables based on $PWD
 brew "direnv"
+# Pack, ship and run any application as a lightweight container
+brew "docker"
+# Simple, fast and user-friendly alternative to find
+brew "fd"
+# Play, record, convert, and stream select audio and video codecs
+brew "ffmpeg"
 # GNU compiler collection
 brew "gcc"
 # Process Management Interface for HPC environments
@@ -45,6 +55,10 @@ brew "open-mpi"
 brew "fish"
 # Toolkit for image loading and pixel buffer manipulation
 brew "gdk-pixbuf"
+# Open-source, cross-platform JavaScript runtime environment
+brew "node"
+# Interact with Google Gemini AI models from the command-line
+brew "gemini-cli"
 # GitHub command-line tool
 brew "gh"
 # OpenType text shaping engine
@@ -65,7 +79,7 @@ brew "gnutls"
 brew "libassuan"
 # Passphrase entry dialog utilizing the Assuan protocol
 brew "pinentry"
-# GNU Pretty Good Privacy (PGP) package
+# GNU Privacy Guard (OpenPGP)
 brew "gnupg"
 # Package compiler and linker metadata toolkit
 brew "pkgconf"
@@ -87,7 +101,7 @@ brew "libheif"
 brew "liblqr"
 # Library for reading RAW files from digital photo cameras
 brew "libraw"
-# Tools and libraries to manipulate images in many formats
+# Tools and libraries to manipulate images in select formats
 brew "imagemagick"
 # Tools and libraries to manipulate images in many formats
 brew "imagemagick@6"
@@ -101,24 +115,28 @@ brew "librsvg"
 brew "lld"
 # Mac App Store command-line interface
 brew "mas"
-# Platform built on V8 to build network applications
-brew "node"
+# Zero-dependency real-time media server and media proxy
+brew "mediamtx"
+# Deep clean and optimize your Mac
+brew "mole"
 # MongoDB Shell to connect, configure, query, and work with your MongoDB database
 brew "mongosh"
+# NCurses Disk Usage
+brew "ncdu"
 # Ambitious Vim-fork focused on extensibility and agility
 brew "neovim"
 # Interpreted, interactive, object-oriented programming language
 brew "python@3.10"
 # Platform built on V8 to build network applications
 brew "node@14"
-# Platform built on V8 to build network applications
-brew "node@16"
 # Development kit for the Java programming language
 brew "openjdk@17"
 # C library to read whole-slide images (a.k.a. virtual slides)
 brew "openslide"
 # ISO-C API and CLI for generating UUIDs
 brew "ossp-uuid"
+# Execute binaries from Python packages in isolated environments
+brew "pipx"
 # PDF rendering library (based on the xpdf-3.0 code base)
 brew "poppler"
 # Interpreted, interactive, object-oriented programming language
@@ -127,26 +145,38 @@ brew "python@3.11"
 brew "python@3.9"
 # Persistent key-value database, with built-in net interface
 brew "redis", restart_service: :changed
+# Search tool like grep and The Silver Searcher
+brew "ripgrep"
+# Static analysis and lint tool, for (ba)sh scripts
+brew "shellcheck"
 # Cross-shell prompt for astronauts
 brew "starship"
+# Organize software neatly under a single directory tree (e.g. /usr/local)
+brew "stow"
 # User interface to the TELNET protocol
 brew "telnet"
+# Terminal multiplexer
+brew "tmux"
+# Display directories as trees (with optional color/HTML output)
+brew "tree"
 # Image processing library
 brew "vips"
+# Utilities to create and convert Web Open Font File (WOFF) files
+brew "woff2"
 # General-purpose lossless data-compression library
 brew "zlib"
-# Everything you need to get started with Heroku
-brew "heroku/brew/heroku"
-# High-performance, schema-free, document-oriented database
-brew "mongodb/brew/mongodb-community"
-# A CLI tool to build for the Shopify platform
-brew "shopify/shopify/shopify-cli"
 # Password manager that keeps all passwords secure behind one password
 cask "1password"
 # Tools for building Android applications
 cask "android-studio"
 # Application uninstaller
 cask "appcleaner"
+# Tool to flash OS images to SD cards & USB drives
+cask "balenaetcher"
+# Cross platform SQL editor and database management app
+cask "beekeeper-studio"
+# Desktop password and login vault
+cask "bitwarden"
 # OpenAI's official ChatGPT desktop app
 cask "chatgpt"
 # Free and open-source web browser
@@ -155,8 +185,12 @@ cask "chromium"
 cask "clipy"
 # Time tracking tool for agencies and freelancers
 cask "clockify"
+# Brings the power of Copilot coding agent directly to your terminal
+cask "copilot-cli"
 # Write, edit, and chat about your code with AI
 cask "cursor"
+# Browser for SQLite databases
+cask "db-browser-for-sqlite"
 # Voice and text chat software
 cask "discord"
 # App to build and share containerised applications and microservices
@@ -176,11 +210,9 @@ cask "iterm2"
 # Keyboard customiser
 cask "karabiner-elements"
 # App to manage software development and track bugs
-cask "linear-linear"
+cask "linear"
 # Software for Logitech devices
 cask "logi-options+"
-# Open-source, self-hosted Slack-alternative
-cask "mattermost"
 cask "mqtt-explorer"
 # Password manager
 cask "nordpass"
@@ -194,12 +226,32 @@ cask "postman"
 cask "rectangle"
 # Music streaming service
 cask "spotify"
+# Charting and social-networking for investment traders
+cask "tradingview"
 # Open-source code editor
 cask "visual-studio-code"
+# Multimedia player
+cask "vlc"
 # Gecko based web browser
 cask "zen"
 # Video communication and virtual meeting platform
 cask "zoom"
+mas "Amphetamine", id: 937984704
+mas "Color Picker", id: 1545870783
+mas "GIPHY CAPTURE", id: 668208984
+mas "Goodnotes", id: 1444383602
+mas "Hand Mirror", id: 1502839586
+mas "Hidden Bar", id: 1452453066
+mas "Home Assistant", id: 1099568401
+mas "Keynote", id: 409183694
+mas "Numbers", id: 409203825
+mas "Pages", id: 409201541
+mas "Slack", id: 803453959
+mas "Spark", id: 1176895641
+mas "Tailscale", id: 1475387142
+mas "Telegram", id: 747648890
+mas "WhatsApp", id: 310633997
+mas "Xcode", id: 497799835
 vscode "aaron-bond.better-comments"
 vscode "be5invis.vscode-custom-css"
 vscode "castwide.solargraph"
@@ -213,8 +265,6 @@ vscode "enkia.tokyo-night"
 vscode "equimper.react-native-react-redux"
 vscode "esbenp.prettier-vscode"
 vscode "formulahendry.auto-rename-tag"
-vscode "github.copilot"
-vscode "github.copilot-chat"
 vscode "github.github-vscode-theme"
 vscode "github.vscode-github-actions"
 vscode "graphql.vscode-graphql"
@@ -244,6 +294,7 @@ vscode "msjsdiag.vscode-react-native"
 vscode "pkief.material-icon-theme"
 vscode "prisma.prisma"
 vscode "quicktype.quicktype"
+vscode "qwtel.sqlite-viewer"
 vscode "ruby-syntax-tree.vscode-syntax-tree"
 vscode "rust-lang.rust-analyzer"
 vscode "shd101wyy.markdown-preview-enhanced"
@@ -256,3 +307,8 @@ vscode "svelte.svelte-vscode"
 vscode "tamasfe.even-better-toml"
 vscode "unifiedjs.vscode-mdx"
 vscode "yoavbls.pretty-ts-errors"
+cargo "cargo-expand"
+cargo "cargo-llvm-cov"
+cargo "cargo-watch"
+cargo "rustfmt"
+npm "corepack"

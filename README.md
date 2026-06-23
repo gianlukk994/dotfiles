@@ -2,66 +2,102 @@
 
 Personal macOS dotfiles that bootstrap a full development environment:
 symlinks, Homebrew packages, macOS defaults, asdf runtimes, VS Code extensions,
-and the Fish shell. Managed with [Dotbot](https://github.com/anishathalye/dotbot).
+and the Fish shell. Symlinks are managed with [GNU Stow](https://www.gnu.org/software/stow/).
 
 ## Installation
 
-Clone the repository and run the install script:
+Clone the repository and run the bootstrap script:
 
 ```sh
 git clone https://github.com/gianlukk994/dotfiles.git ~/.dotfiles
 cd ~/.dotfiles
-./install
+./bootstrap.sh
 ```
 
-`./install` syncs the `dotbot` submodule and applies `install.conf.yaml`, which:
+`bootstrap.sh` installs the Homebrew packages (including `stow`), symlinks the
+dotfiles with Stow, links the VS Code settings, and runs the setup scripts.
 
-1. Creates symlinks into `$HOME` (`~/.config`, `~/.gitconfig`,
-   `~/.gitignore_global`, `~/.vimrc`, `~/.asdfrc`, and the VS Code
-   `settings.json`).
-2. Runs the setup scripts in order:
-   `setup_homebrew.sh` → `setup_macos.sh` → `setup_asdf.sh` →
-   `setup_vscode.sh` → `setup_fish.sh`.
-
-### Running a single step
-
-Each setup script is standalone and can be re-run on its own:
+To run a single step manually:
 
 ```sh
-./setup_homebrew.sh   # Install/update Homebrew + Brewfile packages
-./setup_macos.sh      # Apply macOS defaults and Dock config
-./setup_asdf.sh       # Install asdf plugins and language runtimes
-./setup_vscode.sh     # Install VS Code extensions
-./setup_fish.sh       # Set Fish as default shell, install Oh My Fish
+./setup/homebrew.sh                          # Homebrew + Brewfile packages
+stow -d stow -t ~ git vim asdf fish nvim gh starship   # symlink dotfiles
+./setup/macos.sh                             # macOS defaults and Dock
+./setup/asdf.sh                              # asdf runtimes from ~/.tool-versions
+./setup/fish.sh                              # default shell + Oh My Fish
 ```
+
+## Stow usage
+
+The `stow/` directory holds one package per tool. Every package mirrors the
+layout of `$HOME`, so stowing a package symlinks its files into the right place.
+
+```sh
+# Link a single package
+stow -d stow -t ~ nvim
+
+# Link everything
+stow -d stow -t ~ git vim asdf fish nvim gh starship
+
+# Preview without touching the filesystem
+stow -n -v -d stow -t ~ nvim
+
+# Remove a package's symlinks
+stow -D -d stow -t ~ nvim
+
+# Re-link after adding or moving files in a package
+stow -R -d stow -t ~ nvim
+```
+
+`~/.config` is a real directory: stowed packages create per-tool symlinks
+inside it (`~/.config/fish`, `~/.config/nvim`, …) while leaving untracked app
+state untouched.
 
 ## Structure
 
-| Path | Purpose |
-| --- | --- |
-| `install` / `install.conf.yaml` | Dotbot entry point and symlink/script config. |
-| `Brewfile` | Homebrew formulae and casks (`brew bundle`). |
-| `vscode_extension.txt` | VS Code extensions installed by `setup_vscode.sh`. |
-| `.config/fish/` | Fish config; aliases and env in `config.fish`. |
-| `.config/nvim/` | Neovim config built on [LazyVim](https://www.lazyvim.org/). |
-| `.config/starship.toml` | Starship prompt config. |
-| `.gitconfig`, `.gitignore_global` | Git configuration. |
-| `.asdfrc`, `.tool-versions` | asdf runtime manager config and pinned versions. |
-| `vscode/` | VS Code `settings.json` and custom CSS. |
-| `dotbot/` | Dotbot submodule (do not edit directly). |
+| Path                    | Purpose                                                     |
+| ----------------------- | ----------------------------------------------------------- |
+| `bootstrap.sh`          | Entry point: installs packages, stows dotfiles, runs setup. |
+| `setup/`                | Individual setup scripts (homebrew, macos, asdf, fish).     |
+| `lib/utils.sh`          | Shared shell helpers sourced by the setup scripts.          |
+| `stow/`                 | Stow packages, one per tool (each mirrors `$HOME`).         |
+| `Brewfile`              | Homebrew formulae, casks, App Store and VS Code apps.       |
+| `stow/fish/`            | Fish config; aliases and env in `config.fish`.              |
+| `stow/nvim/`            | Neovim config built on [LazyVim](https://www.lazyvim.org/). |
+| `stow/starship/`        | Starship prompt config.                                     |
+| `stow/git/`             | Git configuration.                                          |
+| `stow/asdf/`            | asdf runtime manager config.                                |
+| `vscode/`               | VS Code `settings.json` and custom CSS.                     |
 
 ## Conventions
 
 - **Colorscheme:** Catppuccin Mocha across Neovim, Starship, and git colors.
-- **Runtimes:** pinned in `.tool-versions` and managed with asdf.
+- **Runtimes:** managed with asdf; `setup/asdf.sh` installs the versions
+  pinned in `~/.tool-versions` if that file exists.
 - **Git:** commits are GPG-signed by default; `push.autoSetupRemote` is on.
 
 ## Adding things
 
-- **Packages:** add to `Brewfile`, then run `brew bundle`.
-- **Symlinks:** add an entry under `link:` in `install.conf.yaml`, then
-  re-run `./install`.
-- **VS Code extensions:** add the extension id to `vscode_extension.txt`.
+- **Packages, casks, App Store and VS Code apps:** install them with `brew`
+  wherever you like, then snapshot the system into the `Brewfile` (see below).
+- **Dotfiles:** add the file inside the matching `stow/<package>/` tree
+  (mirroring its `$HOME` path), then re-run `stow -R -d stow -t ~ <package>`.
+- **A new tool:** create `stow/<tool>/` mirroring `$HOME`, then stow it.
+
+## Brewfile workflow
+
+The `Brewfile` is the single source of truth for Homebrew formulae, casks,
+Mac App Store apps (`mas`) and VS Code extensions (`vscode`). Rather than
+installing from the repo, just install whatever you want with `brew` directly.
+
+The Fish config wraps `brew` so the `Brewfile` is re-dumped automatically after
+a successful `brew install`/`uninstall`/`tap`/`untap`/`reinstall`, capturing
+the new formulae, casks, `mas` and VS Code apps. The wrapper only updates the
+file — review and commit the change yourself. Run `brewdump` to refresh it on
+demand (for example after installing a cask or extension outside of `brew`).
+
+To restore everything on a fresh machine, `bootstrap.sh` runs
+`brew bundle` for you (or run `brew bundle --file=~/.dotfiles/Brewfile`).
 
 ## Notes
 

@@ -25,4 +25,4 @@ jobs:
       - name: Stow dry-run conflict check
         run: |
           fakehome="$(mktemp -d)"
-          stow -n -v -d stow -t "${fakehome}" git vim asdf fish nvim gh starship
+          stow -n -v -d stow -t "${fakehome}" git vim asdf fish nvim gh starship vscode

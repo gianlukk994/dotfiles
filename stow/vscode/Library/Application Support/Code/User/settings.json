@@ -97,7 +97,7 @@
 
   // Inject custom styles and scripts to modify VS Code
   "vscode_custom_css.imports": [
-    "file:///Users/r00t/.dotfiles/vscode/custom-vscode.css"
+    "file:///Users/r00t/Library/Application Support/Code/User/custom-vscode.css"
   ],
   "editor.minimap.enabled": false,
   "sshfs.configs": [

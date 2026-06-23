@@ -48,4 +48,6 @@ jobs:
           check "${HOME}/.config/fish/config.fish" "${GITHUB_WORKSPACE}/stow/fish/.config/fish/config.fish"
           check "${HOME}/.config/nvim/init.lua" "${GITHUB_WORKSPACE}/stow/nvim/.config/nvim/init.lua"
           check "${HOME}/.config/starship.toml" "${GITHUB_WORKSPACE}/stow/starship/.config/starship.toml"
+          check "${HOME}/Library/Application Support/Code/User/settings.json" "${GITHUB_WORKSPACE}/stow/vscode/Library/Application Support/Code/User/settings.json"
+          check "${HOME}/Library/Application Support/Code/User/custom-vscode.css" "${GITHUB_WORKSPACE}/stow/vscode/Library/Application Support/Code/User/custom-vscode.css"
           exit "${fail}"

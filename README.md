@@ -15,13 +15,13 @@ cd ~/.dotfiles
 ```
 
 `bootstrap.sh` installs the Homebrew packages (including `stow`), symlinks the
-dotfiles with Stow, links the VS Code settings, and runs the setup scripts.
+dotfiles with Stow, and runs the setup scripts.
 
 To run a single step manually:
 
 ```sh
 ./setup/homebrew.sh                          # Homebrew + Brewfile packages
-stow -d stow -t ~ git vim asdf fish nvim gh starship   # symlink dotfiles
+stow -d stow -t ~ git vim asdf fish nvim gh starship vscode   # symlink dotfiles
 ./setup/macos.sh                             # macOS defaults and Dock
 ./setup/asdf.sh                              # asdf runtimes from ~/.tool-versions
 ./setup/fish.sh                              # default shell + Oh My Fish
@@ -67,7 +67,7 @@ state untouched.
 | `stow/starship/`        | Starship prompt config.                                     |
 | `stow/git/`             | Git configuration.                                          |
 | `stow/asdf/`            | asdf runtime manager config.                                |
-| `vscode/`               | VS Code `settings.json` and custom CSS.                     |
+| `stow/vscode/`          | VS Code `settings.json` and custom CSS.                     |
 
 ## Conventions
 
@@ -83,6 +83,7 @@ state untouched.
 - **Dotfiles:** add the file inside the matching `stow/<package>/` tree
   (mirroring its `$HOME` path), then re-run `stow -R -d stow -t ~ <package>`.
 - **A new tool:** create `stow/<tool>/` mirroring `$HOME`, then stow it.
+- **VS Code:** edit files under `stow/vscode/Library/Application Support/Code/User/`.
 
 ## Brewfile workflow
 

@@ -36,6 +36,9 @@ fish_add_path $HOME/.yarn/bin
 # Postgres via Homebrew (v12)
 fish_add_path /opt/homebrew/opt/postgresql@12/bin
 
+# Add WezTerm to PATH
+fish_add_path -a "/Applications/WezTerm.app/Contents/MacOS"
+
 # LLVM headers/libs (only keep if you actually need these)
 set -gx LDFLAGS -L/opt/homebrew/opt/llvm/lib
 set -gx CPPFLAGS -I/opt/homebrew/opt/llvm/include

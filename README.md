@@ -2,7 +2,8 @@
 
 Personal macOS dotfiles that bootstrap a full development environment:
 symlinks, Homebrew packages, macOS defaults, asdf runtimes, VS Code extensions,
-and the Fish shell. Symlinks are managed with [GNU Stow](https://www.gnu.org/software/stow/).
+the Fish shell, and the WezTerm terminal. Symlinks are managed with
+[GNU Stow](https://www.gnu.org/software/stow/).
 
 ## Installation
 
@@ -21,7 +22,7 @@ To run a single step manually:
 
 ```sh
 ./setup/homebrew.sh                          # Homebrew + Brewfile packages
-stow -d stow -t ~ git vim asdf fish nvim gh starship vscode   # symlink dotfiles
+stow -d stow -t ~ git vim asdf fish nvim gh starship vscode wezterm   # symlink dotfiles
 ./setup/macos.sh                             # macOS defaults and Dock
 ./setup/asdf.sh                              # asdf runtimes from ~/.tool-versions
 ./setup/fish.sh                              # default shell + Oh My Fish
@@ -37,7 +38,7 @@ layout of `$HOME`, so stowing a package symlinks its files into the right place.
 stow -d stow -t ~ nvim
 
 # Link everything
-stow -d stow -t ~ git vim asdf fish nvim gh starship
+stow -d stow -t ~ git vim asdf fish nvim gh starship vscode wezterm
 
 # Preview without touching the filesystem
 stow -n -v -d stow -t ~ nvim
@@ -68,13 +69,22 @@ state untouched.
 | `stow/git/`             | Git configuration.                                          |
 | `stow/asdf/`            | asdf runtime manager config.                                |
 | `stow/vscode/`          | VS Code `settings.json` and custom CSS.                     |
+| `stow/wezterm/`         | WezTerm terminal config (`wezterm.lua`).                    |
 
 ## Conventions
 
-- **Colorscheme:** Catppuccin Mocha across Neovim, Starship, and git colors.
+- **Colorscheme:** Catppuccin Mocha across Neovim, Starship, and git colors;
+  Tokyo Night in WezTerm (tab bar, window frame, and integrated title buttons).
 - **Runtimes:** managed with asdf; `setup/asdf.sh` installs the versions
   pinned in `~/.tool-versions` if that file exists.
 - **Git:** commits are GPG-signed by default; `push.autoSetupRemote` is on.
+
+## WezTerm
+
+The `stow/wezterm/` package holds `~/.config/wezterm/wezterm.lua` (Tokyo Night
+theme, fancy tab bar, split/pane keybindings). Machine-local details (e.g. SSH
+hosts) live in a gitignored `local.lua` — copy `local.lua.example` to
+`local.lua` and fill it in.
 
 ## Adding things
 
@@ -104,3 +114,5 @@ To restore everything on a fresh machine, `bootstrap.sh` runs
 
 - Secrets (`.env`, `google_api.json`) and the `github-copilot` config are
   gitignored and never committed.
+- SSH keys are not part of this repo — set them up separately (restore from
+  your password manager or generate new ones) on a fresh machine.

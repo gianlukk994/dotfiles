@@ -11,7 +11,7 @@ BASEDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "${BASEDIR}"
 
 # Stow packages to link into $HOME. Each lives under stow/<name>.
-STOW_PACKAGES=(git vim asdf fish nvim gh starship vscode)
+STOW_PACKAGES=(git vim asdf fish nvim gh starship vscode wezterm)
 
 main() {
     # 1. Install Homebrew and the Brewfile packages (includes stow).

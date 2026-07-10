@@ -232,6 +232,8 @@ cask "tradingview"
 cask "visual-studio-code"
 # Multimedia player
 cask "vlc"
+# GPU-accelerated cross-platform terminal emulator and multiplexer
+cask "wezterm"
 # Gecko based web browser
 cask "zen"
 # Video communication and virtual meeting platform

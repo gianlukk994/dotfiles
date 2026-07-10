@@ -16,3 +16,4 @@ simple-update-notifier
 yarn
 .gitconfig.swp
 github-copilot
+stow/wezterm/.config/wezterm/local.lua

@@ -1,0 +1,11 @@
+-- Machine-local WezTerm overrides.
+-- Copy this file to `local.lua` (gitignored) and fill in your values.
+-- `local.lua` is loaded by wezterm.lua via pcall(require, "local").
+
+return {
+  -- SSH details for the `proxmox` ssh_domain:
+  proxmox_host = "OVERRIDE_ME",
+  proxmox_user = "OVERRIDE_ME",
+  -- Optional: override the SSH identity file (defaults to ~/.ssh/id_proxmox):
+  -- proxmox_identity = "~/.ssh/id_proxmox",
+}

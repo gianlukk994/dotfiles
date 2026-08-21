@@ -24,6 +24,7 @@ main() {
     ./setup/macos.sh
     ./setup/asdf.sh
     ./setup/fish.sh
+    ./setup/ambit.sh
 }
 
 main "$@"

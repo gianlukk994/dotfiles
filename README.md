@@ -26,6 +26,7 @@ stow -d stow -t ~ git vim asdf fish nvim gh starship vscode wezterm   # symlink 
 ./setup/macos.sh                             # macOS defaults and Dock
 ./setup/asdf.sh                              # asdf runtimes from ~/.tool-versions
 ./setup/fish.sh                              # default shell + Oh My Fish
+./setup/ambit.sh                             # install the ambit binary
 ```
 
 ## Stow usage
@@ -56,20 +57,20 @@ state untouched.
 
 ## Structure
 
-| Path                    | Purpose                                                     |
-| ----------------------- | ----------------------------------------------------------- |
-| `bootstrap.sh`          | Entry point: installs packages, stows dotfiles, runs setup. |
-| `setup/`                | Individual setup scripts (homebrew, macos, asdf, fish).     |
-| `lib/utils.sh`          | Shared shell helpers sourced by the setup scripts.          |
-| `stow/`                 | Stow packages, one per tool (each mirrors `$HOME`).         |
-| `Brewfile`              | Homebrew formulae, casks, App Store and VS Code apps.       |
-| `stow/fish/`            | Fish config; aliases and env in `config.fish`.              |
-| `stow/nvim/`            | Neovim config built on [LazyVim](https://www.lazyvim.org/). |
-| `stow/starship/`        | Starship prompt config.                                     |
-| `stow/git/`             | Git configuration.                                          |
-| `stow/asdf/`            | asdf runtime manager config.                                |
-| `stow/vscode/`          | VS Code `settings.json` and custom CSS.                     |
-| `stow/wezterm/`         | WezTerm terminal config (`wezterm.lua`).                    |
+| Path                    | Purpose                                                          |
+| ----------------------- | ----------------------------------------------------------------- |
+| `bootstrap.sh`          | Entry point: installs packages, stows dotfiles, runs setup.       |
+| `setup/`                | Individual setup scripts (homebrew, macos, asdf, fish, ambit).    |
+| `lib/utils.sh`          | Shared shell helpers sourced by the setup scripts.                |
+| `stow/`                 | Stow packages, one per tool (each mirrors `$HOME`).               |
+| `Brewfile`              | Homebrew formulae, casks, App Store and VS Code apps.             |
+| `stow/fish/`            | Fish config; aliases and env in `config.fish`.                    |
+| `stow/nvim/`            | Neovim config built on [LazyVim](https://www.lazyvim.org/).       |
+| `stow/starship/`        | Starship prompt config.                                           |
+| `stow/git/`             | Git configuration.                                                |
+| `stow/asdf/`            | asdf runtime manager config.                                      |
+| `stow/vscode/`          | VS Code `settings.json` and custom CSS.                           |
+| `stow/wezterm/`         | WezTerm terminal config (`wezterm.lua`).                          |
 
 ## Conventions
 
@@ -85,6 +86,17 @@ The `stow/wezterm/` package holds `~/.config/wezterm/wezterm.lua` (Tokyo Night
 theme, fancy tab bar, split/pane keybindings). Machine-local details (e.g. SSH
 hosts) live in a gitignored `local.lua` — copy `local.lua.example` to
 `local.lua` and fill it in.
+
+## ambit
+
+[ambit](https://github.com/nebulab/ambit) is a dependency manager for AI
+agent skills, hooks, and MCP servers (Claude Code, Codex, Cursor, opencode,
+VS Code). `setup/ambit.sh` installs the `ambit` binary if it's missing.
+
+`~/ambit.yml` (the project config) and `~/.agents/` (generated state, e.g.
+`.skill-lock.json`) are **not** tracked here — they can reference private
+catalogs or machine-local paths. On a fresh machine, recreate `~/ambit.yml`
+by hand (or `ambit init`), then run `ambit install`.
 
 ## Adding things
 

@@ -60,7 +60,7 @@ state untouched.
 | Path                    | Purpose                                                          |
 | ----------------------- | ----------------------------------------------------------------- |
 | `bootstrap.sh`          | Entry point: installs packages, stows dotfiles, runs setup.       |
-| `setup/`                | Individual setup scripts (homebrew, macos, asdf, fish, ambit).    |
+| `setup/`                | Individual setup scripts (homebrew, macos, asdf, fish, ambit, vscode).    |
 | `lib/utils.sh`          | Shared shell helpers sourced by the setup scripts.                |
 | `stow/`                 | Stow packages, one per tool (each mirrors `$HOME`).               |
 | `Brewfile`              | Homebrew formulae, casks, App Store and VS Code apps.             |
@@ -132,3 +132,8 @@ To restore everything on a fresh machine, `bootstrap.sh` runs
   universal-variable state (absolute, machine-specific paths), regenerated
   automatically the first time you run fish and re-run `setup/asdf.sh`, so it
   never needs to be hand-edited or committed.
+- `vscode_custom_css.imports` in `stow/vscode/.../settings.json` points to an
+  absolute `file:///Users/<you>/...` path — the extension requires a literal
+  path (no `$HOME` expansion). `setup/vscode.sh` rewrites it to the current
+  `$HOME` automatically on every `bootstrap.sh` run, so it just works on a
+  new machine/user without manual edits.

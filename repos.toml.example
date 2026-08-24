@@ -1,0 +1,19 @@
+# Config for setup/github-repos.sh. Copy to repos.toml (gitignored) and fill in.
+#
+# base_dir = "~/Projects"
+#
+# [<Destination>.<org-or-username>]
+# repos = ["repo-one", "repo-two"]
+#
+# base_dir = root folder repos are cloned into (default "~/Projects" if unset).
+# Destination = top-level folder name under base_dir (Personal, Work, ...).
+# Clones into <base_dir>/<Destination>/<org-or-username>/<repo>.
+# Keep `repos` as a single-line, quoted, comma-separated array.
+
+base_dir = "~/Projects"
+
+[Personal.gianlukk994]
+repos = ["dotfiles", "some-side-project"]
+
+[Work.acme-corp]
+repos = ["backend-api", "frontend-app"]

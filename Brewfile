@@ -1,9 +1,11 @@
+tap "atlassian/acli", trusted: true
 tap "heroku/brew"
 tap "homebrew/bundle"
 tap "homebrew/services"
 tap "mongodb/brew"
 tap "nano-collective/nanocoder", "https://github.com/Nano-Collective/nanocoder"
 tap "shopify/shopify"
+tap "stablyai/orca"
 tap "teamookla/speedtest"
 # Run your GitHub Actions locally
 brew "act"
@@ -41,6 +43,8 @@ brew "curl"
 brew "direnv"
 # Pack, ship and run any application as a lightweight container
 brew "docker"
+# Docker CLI plugin for extended build capabilities with BuildKit
+brew "docker-buildx"
 # Simple, fast and user-friendly alternative to find
 brew "fd"
 # Play, record, convert, and stream select audio and video codecs
@@ -147,6 +151,8 @@ brew "python@3.9"
 brew "redis", restart_service: :changed
 # Search tool like grep and The Silver Searcher
 brew "ripgrep"
+# Utility that provides fast incremental file transfer
+brew "rsync"
 # Static analysis and lint tool, for (ba)sh scripts
 brew "shellcheck"
 # Cross-shell prompt for astronauts
@@ -165,32 +171,32 @@ brew "vips"
 brew "woff2"
 # General-purpose lossless data-compression library
 brew "zlib"
+# Software to interact with Atlassian Cloud from the terminal
+brew "atlassian/acli/acli"
 # Password manager that keeps all passwords secure behind one password
 cask "1password"
 # Tools for building Android applications
 cask "android-studio"
-# Application uninstaller
-cask "appcleaner"
 # Tool to flash OS images to SD cards & USB drives
 cask "balenaetcher"
 # Cross platform SQL editor and database management app
 cask "beekeeper-studio"
 # Desktop password and login vault
 cask "bitwarden"
+# Web browser focusing on privacy
+cask "brave-browser"
 # OpenAI's official ChatGPT desktop app
 cask "chatgpt"
 # Free and open-source web browser
 cask "chromium"
-# Clipboard extension app
-cask "clipy"
-# Time tracking tool for agencies and freelancers
-cask "clockify"
+# Terminal-based AI coding assistant
+cask "claude-code"
+# OpenAI's coding agent that runs in your terminal
+cask "codex"
 # Brings the power of Copilot coding agent directly to your terminal
 cask "copilot-cli"
 # Write, edit, and chat about your code with AI
 cask "cursor"
-# Browser for SQLite databases
-cask "db-browser-for-sqlite"
 # Voice and text chat software
 cask "discord"
 # App to build and share containerised applications and microservices
@@ -200,13 +206,9 @@ cask "fellow"
 # Collaborative team software
 cask "figma"
 # Web browser
-cask "firefox"
-# Web browser
 cask "google-chrome"
 # Grammarly for desktop
 cask "grammarly-desktop"
-# Terminal emulator as alternative to Apple's Terminal app
-cask "iterm2"
 # Keyboard customiser
 cask "karabiner-elements"
 # App to manage software development and track bugs
@@ -214,12 +216,12 @@ cask "linear"
 # Software for Logitech devices
 cask "logi-options+"
 cask "mqtt-explorer"
-# Password manager
-cask "nordpass"
 # App to write, plan, collaborate, and get organised
 cask "notion"
 # Calendar for professionals and teams
 cask "notion-calendar"
+# IDE for orchestrating AI coding agents across terminals and worktrees
+cask "stablyai/orca/orca", trusted: true
 # Collaboration platform for API development
 cask "postman"
 # Move and resize windows using keyboard shortcuts or snap areas
@@ -234,10 +236,6 @@ cask "visual-studio-code"
 cask "vlc"
 # GPU-accelerated cross-platform terminal emulator and multiplexer
 cask "wezterm"
-# Gecko based web browser
-cask "zen"
-# Video communication and virtual meeting platform
-cask "zoom"
 mas "Amphetamine", id: 937984704
 mas "Color Picker", id: 1545870783
 mas "GIPHY CAPTURE", id: 668208984
@@ -280,7 +278,6 @@ vscode "karunamurti.rspec-snippets"
 vscode "kelvin.vscode-sshfs"
 vscode "kumar-harsh.graphql-for-vscode"
 vscode "mikaelkristiansson87.react-theme-vscode"
-vscode "misogi.ruby-rubocop"
 vscode "ms-python.debugpy"
 vscode "ms-python.isort"
 vscode "ms-python.python"
@@ -297,7 +294,6 @@ vscode "pkief.material-icon-theme"
 vscode "prisma.prisma"
 vscode "quicktype.quicktype"
 vscode "qwtel.sqlite-viewer"
-vscode "ruby-syntax-tree.vscode-syntax-tree"
 vscode "rust-lang.rust-analyzer"
 vscode "shd101wyy.markdown-preview-enhanced"
 vscode "shopify.polaris-for-vscode"
@@ -313,4 +309,6 @@ cargo "cargo-expand"
 cargo "cargo-llvm-cov"
 cargo "cargo-watch"
 cargo "rustfmt"
+npm "@rama_nigg/open-cursor"
 npm "corepack"
+npm "opencode-ai"

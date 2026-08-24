@@ -26,6 +26,7 @@ main() {
     ./setup/fish.sh
     ./setup/ambit.sh
     ./setup/vscode.sh
+    ./setup/github-repos.sh
 }
 
 main "$@"

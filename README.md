@@ -7,11 +7,49 @@ the Fish shell, and the WezTerm terminal. Symlinks are managed with
 
 ## Installation
 
-Clone the repository and run the bootstrap script:
+Clone the repository:
 
 ```sh
 git clone https://github.com/gianlukk994/dotfiles.git ~/.dotfiles
 cd ~/.dotfiles
+```
+
+## Setup
+
+> You need an SSH key added to your GitHub account to clone/pull private
+> repos.
+
+```sh
+cp stow/wezterm/.config/wezterm/local.lua.example stow/wezterm/.config/wezterm/local.lua
+```
+
+`setup/github-repos.sh` (run by `bootstrap.sh`) clones repos declared in
+`repos.toml` using `gh`. Copy `repos.toml.example` to `repos.toml`
+(gitignored) and fill it in:
+
+```sh
+cp repos.toml.example repos.toml
+```
+
+```toml
+base_dir = "~/Projects"
+
+[Personal.gianlukk994]
+repos = ["dotfiles", "some-side-project"]
+
+[Work.acme-corp]
+repos = ["backend-api", "frontend-app"]
+```
+
+`base_dir` is the root folder repos are cloned into (defaults to
+`~/Projects` if omitted). `Destination` is any top-level folder name under
+`base_dir`. The script creates `<base_dir>/<Destination>/<org-or-username>/`
+and clones missing repos into it. Requires `gh` installed and authenticated; no-op in CI or if
+`repos.toml` is missing.
+
+Now run the bootstrap script:
+
+```sh
 ./bootstrap.sh
 ```
 
@@ -27,6 +65,7 @@ stow -d stow -t ~ git vim asdf fish nvim gh starship vscode wezterm   # symlink 
 ./setup/asdf.sh                              # asdf runtimes from ~/.tool-versions
 ./setup/fish.sh                              # default shell + Oh My Fish
 ./setup/ambit.sh                             # install the ambit binary
+./setup/github-repos.sh                      # clone repos listed in repos.toml
 ```
 
 ## Stow usage
@@ -60,7 +99,8 @@ state untouched.
 | Path                    | Purpose                                                          |
 | ----------------------- | ----------------------------------------------------------------- |
 | `bootstrap.sh`          | Entry point: installs packages, stows dotfiles, runs setup.       |
-| `setup/`                | Individual setup scripts (homebrew, macos, asdf, fish, ambit, vscode).    |
+| `setup/`                | Individual setup scripts (homebrew, macos, asdf, fish, ambit, vscode, github-repos). |
+| `repos.toml.example`    | Example config for `setup/github-repos.sh` (copy to `repos.toml`).|
 | `lib/utils.sh`          | Shared shell helpers sourced by the setup scripts.                |
 | `stow/`                 | Stow packages, one per tool (each mirrors `$HOME`).               |
 | `Brewfile`              | Homebrew formulae, casks, App Store and VS Code apps.             |
@@ -121,19 +161,3 @@ demand (for example after installing a cask or extension outside of `brew`).
 
 To restore everything on a fresh machine, `bootstrap.sh` runs
 `brew bundle` for you (or run `brew bundle --file=~/.dotfiles/Brewfile`).
-
-## Notes
-
-- Secrets (`.env`, `google_api.json`) and the `github-copilot` config are
-  gitignored and never committed.
-- SSH keys are not part of this repo — set them up separately (restore from
-  your password manager or generate new ones) on a fresh machine.
-- `stow/fish/.config/fish/fish_variables` is gitignored: it's fish's own
-  universal-variable state (absolute, machine-specific paths), regenerated
-  automatically the first time you run fish and re-run `setup/asdf.sh`, so it
-  never needs to be hand-edited or committed.
-- `vscode_custom_css.imports` in `stow/vscode/.../settings.json` points to an
-  absolute `file:///Users/<you>/...` path — the extension requires a literal
-  path (no `$HOME` expansion). `setup/vscode.sh` rewrites it to the current
-  `$HOME` automatically on every `bootstrap.sh` run, so it just works on a
-  new machine/user without manual edits.

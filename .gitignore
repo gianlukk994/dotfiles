@@ -1,6 +1,5 @@
 Brewfile.lock.json
 configstore
-iterm2
 gatsby
 sanity
 raycast
@@ -16,4 +15,5 @@ simple-update-notifier
 yarn
 .gitconfig.swp
 github-copilot
+temp
 stow/wezterm/.config/wezterm/local.lua

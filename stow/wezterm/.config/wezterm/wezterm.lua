@@ -119,7 +119,19 @@ config = {
       mods = 'CMD',
       action = wezterm.action.SendString 'clear\n'
     }
-  }
+  },
+  mouse_bindings = {
+    {
+      event = { Up = { streak = 1, button = 'Left' } },
+      mods = 'CMD',
+      action = wezterm.action.OpenLinkAtMouseCursor,
+    },
+    {
+      event = { Down = { streak = 1, button = 'Left' } },
+      mods = 'CMD',
+      action = wezterm.action.Nop,
+    },
+  },
 }
 
 return config

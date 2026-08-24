@@ -16,5 +16,6 @@ yarn
 .gitconfig.swp
 github-copilot
 temp
+repos.toml
 stow/wezterm/.config/wezterm/local.lua
 stow/fish/.config/fish/fish_variables

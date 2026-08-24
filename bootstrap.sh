@@ -25,6 +25,7 @@ main() {
     ./setup/asdf.sh
     ./setup/fish.sh
     ./setup/ambit.sh
+    ./setup/vscode.sh
 }
 
 main "$@"

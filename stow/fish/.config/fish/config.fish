@@ -76,11 +76,11 @@ if type -q direnv
     direnv hook fish | source
 end
 
+# Created by `pipx` on 2026-04-14 07:44:20
+set PATH $PATH $HOME/.local/bin
+
 # ── Prompt (Starship wins) ────────────────────────────────────────
 # Keep this LAST so nothing else overrides the prompt
 if type -q starship
     starship init fish | source
 end
-
-# Created by `pipx` on 2026-04-14 07:44:20
-set PATH $PATH /Users/r00t/.local/bin

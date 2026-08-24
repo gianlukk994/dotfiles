@@ -5,7 +5,6 @@
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-REPO_DIR="$(cd "${SCRIPT_DIR}/.." && pwd)"
 # shellcheck source=../lib/utils.sh
 source "${SCRIPT_DIR}/../lib/utils.sh"
 
@@ -13,25 +12,21 @@ fancy_echo "<<< Starting macOS Setup >>>"
 
 persistent_applications=(
     "/System/Applications/System Preferences.app"
-    "/System/Applications/Calendar.app"
-    "/Applications/Spotify.app"
-    "/Applications/iTerm.app"
-    "/Applications/Notion.app"
-    "/System/Applications/Notes.app"
-    "/Applications/Todoist.app"
     "/Applications/Visual Studio Code.app"
-    "/Applications/Brave.app"
-    "/Applications/Spark.app"
-    "/Applications/Fellow.app"
-    "/Applications/Harvest.app"
-    "/Applications/Loom.app"
-    "/Applications/Asana.app"
-    "/Applications/Slack.app"
-    "/Applications/Discord.app"
+    "/Applications/Spotify.app"
+    "/Applications/WezTerm.app"
     "/Applications/WhatsApp.app"
+    "/System/Applications/Notes.app"
+    "/Applications/Spark.app"
+    "/Applications/Slack.app"
     "/Applications/Telegram.app"
-    "/Applications/Twitter.app"
-    "/Applications/Postman.app"
+    "/Applications/Notion Calendar.app"
+    "/Applications/Notion.app"
+    "/Applications/TradingView.app"
+    "/Applications/Brave.app"
+    "/Applications/ChatGPT Classic.app"
+    "/Applications/Orca.app"
+    "/Applications/Home Assistant.app"
 )
 
 ########### UI ###########
@@ -54,11 +49,6 @@ defaults write com.apple.dock show-recents -bool false
 for app in "${persistent_applications[@]}"; do
   defaults write com.apple.dock persistent-apps -array-add "<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>$app</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>"
 done
-
-# Load preferences from a custom directory
-defaults write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder -bool true
-# Specify the custom directory
-defaults write com.googlecode.iterm2.plist PrefsCustomFolder -string "${REPO_DIR}/.iterm2"
 
 if ! is_ci; then
     killall Dock || true

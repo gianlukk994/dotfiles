@@ -128,3 +128,7 @@ To restore everything on a fresh machine, `bootstrap.sh` runs
   gitignored and never committed.
 - SSH keys are not part of this repo — set them up separately (restore from
   your password manager or generate new ones) on a fresh machine.
+- `stow/fish/.config/fish/fish_variables` is gitignored: it's fish's own
+  universal-variable state (absolute, machine-specific paths), regenerated
+  automatically the first time you run fish and re-run `setup/asdf.sh`, so it
+  never needs to be hand-edited or committed.

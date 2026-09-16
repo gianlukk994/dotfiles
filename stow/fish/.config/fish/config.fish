@@ -70,6 +70,15 @@ function gsnap
     git commit -m snap --no-verify
 end
 
+# Separate Claude Code config dirs per account
+function claude-personal
+    env CLAUDE_CONFIG_DIR=$HOME/.claude-personal claude $argv
+end
+
+function claude-work
+    env CLAUDE_CONFIG_DIR=$HOME/.claude-work claude $argv
+end
+
 # ── Tooling hooks ─────────────────────────────────────────────────
 # direnv (auto-load .envrc)
 if type -q direnv
